@@ -8,8 +8,10 @@ import {
     Button,
     Burger,
     Avatar,
+    Stack,
+    Title,
   } from '@mantine/core';
-  import {FaChevronDown} from 'react-icons/fa';
+  import {FaAd, FaChevronDown} from 'react-icons/fa';
   import { useDisclosure } from '@mantine/hooks';
   
   const HEADER_HEIGHT = 60;
@@ -68,7 +70,6 @@ import {
           key={link.label}
           href={link.link}
           className={classes.link}
-          onClick={(event) => event.preventDefault()}
         >
           {link.label}
         </a>
@@ -79,12 +80,31 @@ import {
         <Container className={classes.inner} fluid>
           <Group>
             <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
-            <Avatar color="gray" radius="xl">LOGO</Avatar>
+            <Avatar color="gray" size={64} radius="xl">LOGO</Avatar>
           </Group>
           <Group spacing={5} className={classes.links}>
             {items}
           </Group>
-          <Avatar color="gray" radius="xl" />
+          <Menu shadow="md" width={200}>
+            <Menu.Target>
+              <Avatar color="gray" radius="xl" style={{cursor: 'pointer'}} />
+            </Menu.Target>
+
+            <Menu.Dropdown>
+              <Stack align="center">
+                <Avatar size={128} radius='xl' />
+                <Title mt={-12} order={4}>USUÁRIO NOME</Title>
+              </Stack>
+              <Menu.Divider />
+              <Menu.Item>Minhas Compras</Menu.Item>
+              <Menu.Item>Meus Projetos</Menu.Item>
+              <Menu.Item>Lista de Desejos</Menu.Item>
+              <Menu.Item>Minha Loja</Menu.Item>
+              <Menu.Divider />
+              <Menu.Item>Configurações de Usuário</Menu.Item>
+              <Menu.Item color="red">Sair</Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
         </Container>
       </Header>
     );
